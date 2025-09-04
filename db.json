@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "buyer_john",
+      "email": "john@example.com",
+      "password": "hashed_password_123",
+      "role": "customer",
+      "profile": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "phone": "+1234567890",
+        "location": "New York, USA"
+      },
+      "createdAt": "2024-01-15T10:30:00Z",
+      "lastLogin": "2024-01-20T14:25:00Z"
+    },
+    {
+      "id": 2,
+      "username": "seller_sarah",
+      "email": "sarah@example.com",
+      "password": "hashed_password_456",
+      "role": "seller",
+      "profile": {
+        "firstName": "Sarah",
+        "lastName": "Wilson",
+        "phone": "+1987654321",
+        "company": "Tech Solutions Inc.",
+        "services": ["web development", "consulting"],
+        "rating": 4.8
+      },
+      "createdAt": "2024-01-10T09:15:00Z",
+      "lastLogin": "2024-01-20T16:45:00Z"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "sellerId": 2,
+      "title": "Web Development Service",
+      "description": "Professional website development with modern technologies",
+      "category": "IT & Software",
+      "price": 500,
+      "currency": "USD",
+      "deliveryTime": "7 days",
+      "rating": 4.9,
+      "reviews": 25,
+      "tags": ["react", "nodejs", "javascript"]
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "sellerId": 2,
+      "serviceId": 1,
+      "status": "completed",
+      "price": 500,
+      "orderDate": "2024-01-18T11:20:00Z",
+      "completionDate": "2024-01-25T09:30:00Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "expiresAt": "2024-01-21T14:25:00Z"
+    }
+  ]
+}
