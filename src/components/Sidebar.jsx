@@ -11,6 +11,7 @@ function Sidebar({ userId, role }) {
         <Link to={`/services/${userId}`}>Services</Link>
         <Link to={`/orders/${userId}`}>Orders</Link>
         <Link to={`/wallet/${userId}`}>Wallet</Link>
+        <Link to={`/profile/${userId}`}>Profile</Link>
         <Link to="/">Logout</Link>
       </nav>
     </div>

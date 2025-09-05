@@ -1,71 +1,40 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
   background: #f5f6fa;
   color: #2f3640;
-  line-height: 1.6;
 }
 
-/* ========== Home Page ========== */
 .home-container {
   text-align: center;
-  padding: 80px 20px;
+  padding: 50px;
 }
 
-.home-container h1 {
-  font-size: 2.5rem;
-  color: #273c75;
-}
-
-.home-container p {
-  margin: 15px 0 30px;
-  font-size: 1.2rem;
-  color: #555;
+.auth-buttons {
+  margin-top: 20px;
 }
 
 .auth-buttons button {
   margin: 0 10px;
-  padding: 12px 25px;
+  padding: 10px 20px;
   border: none;
   background: #273c75;
   color: white;
   cursor: pointer;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.auth-buttons button:hover {
-  background: #40739e;
+  border-radius: 5px;
 }
 
 .auth-buttons .signup-btn {
   background: #44bd32;
 }
 
-.auth-buttons .signup-btn:hover {
-  background: #4cd137;
-}
-
-/* ========== Auth Forms (Login & Signup) ========== */
 .auth-container {
-  width: 350px;
-  margin: 80px auto;
+  width: 300px;
+  margin: 50px auto;
   background: white;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.auth-container h2 {
-  margin-bottom: 20px;
-  color: #273c75;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
 }
 
 .auth-container form {
@@ -75,55 +44,43 @@ body {
 
 .auth-container input,
 .auth-container select {
-  margin: 10px 0;
-  padding: 12px;
+  margin: 8px 0;
+  padding: 10px;
   border: 1px solid #dcdde1;
-  border-radius: 6px;
-  font-size: 1rem;
+  border-radius: 5px;
 }
 
 .auth-container button {
-  margin-top: 15px;
-  padding: 12px;
+  margin-top: 10px;
+  padding: 10px;
   background: #0097e6;
   border: none;
   color: white;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
 }
 
-.auth-container button:hover {
-  background: #00a8ff;
-}
-
-/* ========== Layout with Sidebar ========== */
 .layout {
   display: flex;
 }
 
-/* Sidebar */
 .sidebar {
-  width: 220px;
+  width: 200px;
   background: #273c75;
   color: white;
   height: 100vh;
   padding: 20px;
   position: fixed;
-  top: 0;
-  left: 0;
 }
 
 .sidebar h2 {
   margin-top: 0;
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
-  color: #f5f6fa;
 }
 
 .sidebar nav {
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -131,46 +88,52 @@ body {
 .sidebar nav a {
   color: white;
   text-decoration: none;
-  margin: 12px 0;
-  padding: 10px 15px;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: background 0.3s ease;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.3s;
 }
 
 .sidebar nav a:hover {
   background: #40739e;
 }
 
-/* Content Area */
 .content {
-  margin-left: 240px;
-  padding: 30px;
+  margin-left: 220px;
+  padding: 20px;
   width: 100%;
 }
 
-.content h1 {
-  color: #273c75;
-  margin-bottom: 15px;
+.page-container {
+  padding: 20px;
 }
 
-/* ========== Lists (Services, Dashboard items) ========== */
+/* === Services Page === */
+.content h1 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #1a237e;
+}
+
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
   background: white;
-  margin: 12px 0;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0px 1px 6px rgba(0,0,0,0.08);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
 }
 
 li h3 {
+  font-size: 20px;
   margin-bottom: 8px;
-  color: #192a56;
+  color: #333;
 }
 
 li p {
@@ -178,134 +141,158 @@ li p {
   color: #555;
 }
 
-/* ========== Wallet ========== */
-.wallet-balance {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  display: inline-block;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-  font-size: 1.2rem;
-  color: #192a56;
+/* === Ratings === */
+.rating {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #fbc02d; /* gold stars */
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* ========== Buttons (global reuse) ========== */
-button {
-  cursor: pointer;
+.rating span {
+  font-size: 14px;
+  color: #444;
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Order Button */
+/* === Order Button === */
 .order-btn {
-  background: #44bd32;
+  background: #1a237e;
   color: white;
   border: none;
-  padding: 10px 18px;
-  margin-top: 10px;
+  padding: 10px 16px;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background 0.2s ease-in-out;
 }
 
 .order-btn:hover {
-  background: #4cd137;
+  background: #303f9f;
 }
 
-/* Ratings */
-.rating {
-  margin: 8px 0;
-  font-size: 1.1rem;
-  color: #fbc531;
-}
-
-/* Reviews Section */
+/* === Reviews Section === */
 .reviews {
-  margin-top: 15px;
-  padding: 10px;
-  background: #f1f2f6;
-  border-radius: 8px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
 }
 
 .reviews h4 {
+  font-size: 16px;
   margin-bottom: 10px;
-  color: #192a56;
+  color: #1a237e;
 }
 
 .review-card {
-  background: white;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 6px;
-  box-shadow: 0px 1px 6px rgba(0,0,0,0.08);
+  background: #f9f9f9;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
+.review-card p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+/* === Add Review Form === */
 .reviews form {
   display: flex;
-  gap: 8px;
-  margin-top: 10px;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
 }
 
 .reviews select,
 .reviews input {
   padding: 8px;
-  border: 1px solid #dcdde1;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 .reviews button {
-  padding: 8px 12px;
-  background: #0097e6;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.reviews button:hover {
-  background: #00a8ff;
-}
-
-/* Orders Page */
-.orders-list li {
-  border-left: 5px solid #0097e6;
-}
-
-.orders-list h3 {
-  color: #273c75;
-}
-
-/* Orders Page */
-.orders-list li {
-  border-left: 5px solid #0097e6;
-  margin-bottom: 10px;
-}
-
-.orders-list h3 {
-  color: #273c75;
-}
-
-.finish-btn {
-  background: #44bd32;
+  background: #4caf50;
   color: white;
   border: none;
   padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 8px;
-  transition: all 0.3s ease;
+  font-size: 14px;
 }
 
-.finish-btn:hover {
-  background: #4cd137;
+.reviews button:hover {
+  background: #388e3c;
 }
 
-/* Seller Services */
-.services-list li {
-  border-left: 5px solid #e1b12c;
-  margin-bottom: 10px;
+/* === Responsive Styling === */
+@media (max-width: 768px) {
+  li {
+    padding: 15px;
+  }
+
+  li h3 {
+    font-size: 18px;
+  }
+
+  .order-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .reviews form {
+    gap: 8px;
+  }
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+.profile-card img.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  max-width: 400px;
+}
+
+.profile-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.profile-form button {
+  background: #1a237e;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.profile-form button:hover {
+  background: #303f9f;
 }
