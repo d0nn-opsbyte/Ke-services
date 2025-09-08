@@ -1,127 +1,267 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Sidebar from "./Sidebar";
 
 function Orders() {
-  const { id } = useParams();
-  const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
-  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userRole = user?.role; // Assuming user object has a role property
 
   useEffect(() => {
-    // Fetch current user
-    fetch(`http://localhost:3001/users/${id}`)
-      .then((res) => res.json())
-      .then((data) => setUser(data));
+    if (!user) {
+      setLoading(false);
+      setError("Please log in to view your orders");
+      return;
+    }
 
-    // Fetch all orders
     fetch("http://localhost:3001/orders")
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch orders");
+        return res.json();
+      })
+      .then((data) => {
+        // Filter orders based on user role
+        let filteredOrders = [];
+        if (userRole === "buyer") {
+          filteredOrders = data.filter((order) => order.buyerId === user.id);
+        } else if (userRole === "seller") {
+          filteredOrders = data.filter((order) => order.sellerId === user.id);
+        } else {
+          // Admin or other roles might see all orders
+          filteredOrders = data;
+        }
+        
+        setOrders(filteredOrders);
+      })
+      .catch((err) => {
+        console.error("Error fetching orders:", err);
+        setError("Failed to load orders. Please try again later.");
+      })
+      .finally(() => setLoading(false));
+  }, [user, userRole]);
 
-    // Fetch all services
-    fetch("http://localhost:3001/services")
-      .then((res) => res.json())
-      .then((data) => setServices(data));
-  }, [id]);
+  if (loading) {
+    return (
+      <div className="orders-container">
+        <div className="loading">Loading your orders...</div>
+      </div>
+    );
+  }
 
-  const getServiceDetails = (serviceId) =>
-    services.find((s) => s.id === serviceId);
-
-  // ✅ Mark order as finished (seller only)
-  const finishOrder = (orderId) => {
-    fetch(`http://localhost:3001/orders/${orderId}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: "completed" }),
-    })
-      .then((res) => res.json())
-      .then((updatedOrder) => {
-        setOrders(
-          orders.map((o) => (o.id === orderId ? updatedOrder : o))
-        );
-      });
-  };
+  if (error) {
+    return (
+      <div className="orders-container">
+        <div className="error-message">{error}</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="layout">
-      {user && <Sidebar userId={user.id} role={user.role} />}
-      <div className="content">
-        <h1>Orders</h1>
+    <div className="orders-container">
+      <h2>{userRole === "seller" ? "Orders Received" : "My Orders"}</h2>
+      
+      {orders.length === 0 ? (
+        <div className="no-orders">
+          <p>
+            {userRole === "seller" 
+              ? "You haven't received any orders yet." 
+              : "You haven't placed any orders yet."}
+          </p>
+          <button 
+            className="browse-services-btn"
+            onClick={() => window.location.href = "/services"}
+          >
+            {userRole === "seller" ? "Manage Your Services" : "Browse Services"}
+          </button>
+        </div>
+      ) : (
+        <div className="orders-list">
+          {orders.map((order) => (
+            <OrderCard key={order.id} order={order} userRole={userRole} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
-        {/* ================= BUYER ORDERS ================= */}
-        {user && user.role === "buyer" && (
-          <>
-            <h2>Your Orders</h2>
-            <ul className="orders-list">
-              {orders
-                .filter((o) => parseInt(o.buyerId) === parseInt(id))
-                .map((o) => {
-                  const service = getServiceDetails(o.serviceId);
-                  return (
-                    <li key={o.id}>
-                      <h3>{service?.title}</h3>
-                      <p>{service?.description}</p>
-                      <p>Status: {o.status}</p>
-                      <p>
-                        Ordered on:{" "}
-                        {new Date(o.createdAt).toLocaleDateString()}
-                      </p>
-                    </li>
-                  );
-                })}
-            </ul>
-          </>
+// Order Card Component
+function OrderCard({ order, userRole }) {
+  const [serviceDetails, setServiceDetails] = useState(null);
+  const [sellerDetails, setSellerDetails] = useState(null);
+  const [buyerDetails, setBuyerDetails] = useState(null);
+  const [detailsLoading, setDetailsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchOrderDetails = async () => {
+      try {
+        setDetailsLoading(true);
+        
+        // Fetch service details
+        const serviceResponse = await fetch(`http://localhost:3001/services/${order.serviceId}`);
+        const serviceData = await serviceResponse.json();
+        setServiceDetails(serviceData);
+        
+        // Fetch seller details
+        const sellerResponse = await fetch(`http://localhost:3001/users/${order.sellerId}`);
+        const sellerData = await sellerResponse.json();
+        setSellerDetails(sellerData);
+        
+        // Fetch buyer details if user is a seller
+        if (userRole === "seller") {
+          const buyerResponse = await fetch(`http://localhost:3001/users/${order.buyerId}`);
+          const buyerData = await buyerResponse.json();
+          setBuyerDetails(buyerData);
+        }
+      } catch (err) {
+        console.error("Error fetching order details:", err);
+      } finally {
+        setDetailsLoading(false);
+      }
+    };
+
+    fetchOrderDetails();
+  }, [order, userRole]);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "completed":
+        return "#28a745";
+      case "in progress":
+        return "#ffc107";
+      case "pending":
+        return "#17a2b8";
+      case "cancelled":
+        return "#dc3545";
+      default:
+        return "#6c757d";
+    }
+  };
+
+  const handleStatusUpdate = async (newStatus) => {
+    try {
+      const response = await fetch(`http://localhost:3001/orders/${order.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      
+      if (response.ok) {
+        // Update local state to reflect the change
+        order.status = newStatus;
+        if (newStatus === "completed") {
+          order.completionDate = new Date().toISOString();
+        }
+        // Force re-render by creating a new array
+        // This would work better if the state was managed in the parent component
+        window.location.reload(); // Simple solution for demo purposes
+      } else {
+        console.error("Failed to update order status");
+      }
+    } catch (err) {
+      console.error("Error updating order status:", err);
+    }
+  };
+
+  if (detailsLoading) {
+    return (
+      <div className="order-card">
+        <div className="loading">Loading order details...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="order-card">
+      <div className="order-header">
+        <h3>{serviceDetails?.title || "Service details unavailable"}</h3>
+        <span 
+          className="status-badge"
+          style={{ backgroundColor: getStatusColor(order.status) }}
+        >
+          {order.status}
+        </span>
+      </div>
+      
+      <div className="order-details">
+        <div className="detail-row">
+          <span className="label">Order ID:</span>
+          <span className="value">#{order.id}</span>
+        </div>
+        
+        {userRole === "buyer" && (
+          <div className="detail-row">
+            <span className="label">Seller:</span>
+            <span className="value">
+              {sellerDetails ? `${sellerDetails.profile?.firstName} ${sellerDetails.profile?.lastName}` : "Unknown seller"}
+            </span>
+          </div>
         )}
-
-        {/* ================= SELLER ORDERS ================= */}
-        {user && user.role === "seller" && (
-          <>
-            <h2>Orders for Your Services</h2>
-            <ul className="orders-list">
-              {orders
-                .filter((o) => {
-                  const service = getServiceDetails(o.serviceId);
-                  return service?.sellerId === parseInt(id);
-                })
-                .map((o) => {
-                  const service = getServiceDetails(o.serviceId);
-                  return (
-                    <li key={o.id}>
-                      <h3>{service?.title}</h3>
-                      <p>Ordered by Buyer ID: {o.buyerId}</p>
-                      <p>Status: {o.status}</p>
-                      <p>
-                        Ordered on:{" "}
-                        {new Date(o.createdAt).toLocaleDateString()}
-                      </p>
-                      {o.status !== "completed" && (
-                        <button
-                          className="finish-btn"
-                          onClick={() => finishOrder(o.id)}
-                        >
-                          Mark as Finished
-                        </button>
-                      )}
-                    </li>
-                  );
-                })}
-            </ul>
-
-            {/* ================= SELLER SERVICES ================= */}
-            <h2>Your Services</h2>
-            <ul className="services-list">
-              {services
-                .filter((s) => s.sellerId === parseInt(id))
-                .map((s) => (
-                  <li key={s.id}>
-                    <h3>{s.title}</h3>
-                    <p>{s.description}</p>
-                    <p>KES {s.price}</p>
-                  </li>
-                ))}
-            </ul>
-          </>
+        
+        {userRole === "seller" && (
+          <div className="detail-row">
+            <span className="label">Buyer:</span>
+            <span className="value">
+              {buyerDetails ? `${buyerDetails.profile?.firstName} ${buyerDetails.profile?.lastName}` : "Unknown buyer"}
+            </span>
+          </div>
+        )}
+        
+        <div className="detail-row">
+          <span className="label">Order Date:</span>
+          <span className="value">
+            {new Date(order.orderDate).toLocaleDateString()}
+          </span>
+        </div>
+        
+        <div className="detail-row">
+          <span className="label">Price:</span>
+          <span className="value">${order.price} {order.currency || "USD"}</span>
+        </div>
+        
+        {order.completionDate && (
+          <div className="detail-row">
+            <span className="label">Completed:</span>
+            <span className="value">
+              {new Date(order.completionDate).toLocaleDateString()}
+            </span>
+          </div>
+        )}
+      </div>
+      
+      <div className="order-actions">
+        <button className="btn btn-primary">View Details</button>
+        <button className="btn btn-secondary">
+          {userRole === "buyer" ? "Contact Seller" : "Contact Buyer"}
+        </button>
+        
+        {userRole === "seller" && order.status === "pending" && (
+          <button 
+            className="btn btn-success"
+            onClick={() => handleStatusUpdate("in progress")}
+          >
+            Start Working
+          </button>
+        )}
+        
+        {userRole === "seller" && order.status === "in progress" && (
+          <button 
+            className="btn btn-success"
+            onClick={() => handleStatusUpdate("completed")}
+          >
+            Mark as Complete
+          </button>
+        )}
+        
+        {userRole === "buyer" && order.status === "in progress" && (
+          <button 
+            className="btn btn-success"
+            onClick={() => handleStatusUpdate("completed")}
+          >
+            Confirm Completion
+          </button>
         )}
       </div>
     </div>

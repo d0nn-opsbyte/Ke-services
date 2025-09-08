@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John Buyer",
       "email": "buyer@example.com",
       "password": "123456",
@@ -9,7 +9,7 @@
       "profilePic": "/uploads/john-buyer.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Sarah Seller",
       "email": "seller@example.com",
       "password": "123456",
@@ -17,7 +17,7 @@
       "profilePic": "/uploads/sarah-seller.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Mike Seller",
       "email": "mike@example.com",
       "password": "123456",
@@ -27,21 +27,21 @@
   ],
   "services": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Plumbing Services",
       "description": "Fix leaks, install pipes, unclog drains",
       "price": 2000,
       "sellerId": 2
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "House Cleaning",
       "description": "Deep cleaning for houses and apartments",
       "price": 1500,
       "sellerId": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Graphic Design",
       "description": "Logos, posters, flyers",
       "price": 3000,
@@ -50,7 +50,7 @@
   ],
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "serviceId": 1,
       "serviceName": "Plumbing Services",
       "buyerId": 1,
@@ -58,42 +58,59 @@
       "status": "Pending"
     },
     {
-      "id": 2,
+      "id": "2",
       "serviceId": 3,
       "serviceName": "Graphic Design",
       "buyerId": 1,
       "sellerId": 3,
       "status": "Completed"
+    },
+    {
+      "id": "be02",
+      "buyerId": "1",
+      "serviceId": "1",
+      "status": "pending",
+      "createdAt": "2025-09-08T13:00:42.102Z"
+    },
+    {
+      "id": "a0f2",
+      "buyerId": "1",
+      "serviceId": "1",
+      "status": "pending",
+      "createdAt": "2025-09-08T13:15:37.665Z"
     }
   ],
   "reviews": [
-  {
-    "id": 1,
-    "serviceId": 1,
-    "buyerId": 1,
-    "rating": 5,
-    "comment": "Great plumbing work, fixed everything quickly!"
-  },
-  {
-    "id": 2,
-    "serviceId": 3,
-    "buyerId": 1,
-    "rating": 4,
-    "comment": "Good design, but delivery took longer than expected."
-  }
-],
-"wallets": [
-  {
-    "userId": 1,
-    "balance": 5000
-  },
-  {
-    "userId": 2,
-    "balance": 0
-  },
-  {
-    "userId": 3,
-    "balance": 0
-  }
-]
+    {
+      "id": "1",
+      "serviceId": 1,
+      "buyerId": 1,
+      "rating": 5,
+      "comment": "Great plumbing work, fixed everything quickly!"
+    },
+    {
+      "id": "2",
+      "serviceId": 3,
+      "buyerId": 1,
+      "rating": 4,
+      "comment": "Good design, but delivery took longer than expected."
+    }
+  ],
+  "wallets": [
+    {
+      "userId": 1,
+      "balance": 5000,
+      "id": "59b0"
+    },
+    {
+      "userId": 2,
+      "balance": 0,
+      "id": "7abe"
+    },
+    {
+      "userId": 3,
+      "balance": 0,
+      "id": "684e"
+    }
+  ]
 }
