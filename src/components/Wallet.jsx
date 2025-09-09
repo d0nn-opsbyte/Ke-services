@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import BackButton from "./BackButton";
 
 function Wallet() {
   const { id } = useParams();
@@ -18,8 +18,8 @@ function Wallet() {
   }, [id]);
 
   return (
-    <div className="layout">
-      {user && <Sidebar userId={user.id} role={user.role} />}
+    <div>
+      {user && <BackButton />}
       <div className="content">
         <h1>Wallet</h1>
         {wallet ? (

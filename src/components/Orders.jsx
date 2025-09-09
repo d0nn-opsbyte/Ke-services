@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BackButton from "./BackButton";
 
 function Orders() {
   const { id } = useParams();
@@ -23,6 +24,7 @@ function Orders() {
   };
 
   return (<>
+    <BackButton id={id} />
     <div className="orders-container">
       <h2>My Orders</h2>
       {orders

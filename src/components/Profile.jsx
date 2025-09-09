@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import BackButton from "./BackButton";
 
 function Profile() {
   const { id } = useParams();
@@ -52,8 +52,8 @@ function Profile() {
   if (!user) return <p>Loading...</p>;
 
   return (
-    <div className="layout">
-      <Sidebar userId={user.id} role={user.role} />
+    <div>
+      <BackButton />
       <div className="content">
         <h1>My Profile</h1>
 
@@ -81,8 +81,8 @@ function Profile() {
           />
           <button type="submit">Save Changes</button>
         </form>
+       </div>
       </div>
-    </div>
   );
 }
 

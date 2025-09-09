@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BackButton from "./BackButton";
 
 function Requests() {
   const { id } = useParams();
@@ -28,7 +29,8 @@ function Requests() {
       });
   };
 
-  return (
+  return (<>
+    <BackButton />
     <div className="orders-container">
       <h2>Incoming Requests</h2>
       {orders
@@ -50,6 +52,7 @@ function Requests() {
           );
         })}
     </div>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import BackButton from "./BackButton";
 
 function Services() {
   const { id } = useParams(); // current logged-in user
@@ -70,8 +70,8 @@ function Services() {
   };
 
   return (
-    <div className="layout">
-      {user && <Sidebar userId={user.id} role={user.role} />}
+    <div>
+      {user && <BackButton />}
       <div className="content">
         <h1>Available Services</h1>
         {services.length > 0 ? (
