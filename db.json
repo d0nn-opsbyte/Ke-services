@@ -31,86 +31,124 @@
       "title": "Plumbing Services",
       "description": "Fix leaks, install pipes, unclog drains",
       "price": 2000,
-      "sellerId": 2
+      "sellerId": "2"
     },
     {
       "id": "2",
       "title": "House Cleaning",
       "description": "Deep cleaning for houses and apartments",
       "price": 1500,
-      "sellerId": 2
+      "sellerId": "2"
     },
     {
       "id": "3",
       "title": "Graphic Design",
       "description": "Logos, posters, flyers",
       "price": 3000,
-      "sellerId": 3
+      "sellerId": "3"
     }
   ],
   "orders": [
     {
       "id": "1",
-      "serviceId": 1,
-      "serviceName": "Plumbing Services",
-      "buyerId": 1,
-      "sellerId": 2,
-      "status": "Pending"
+      "serviceId": "1",
+      "buyerId": "1",
+      "sellerId": "2",
+      "status": "completed",
+      "location": "Nairobi West",
+      "createdAt": "2025-09-07T10:00:00Z",
+      "updatedAt": "2025-09-07T12:00:00Z"
     },
     {
       "id": "2",
-      "serviceId": 3,
-      "serviceName": "Graphic Design",
-      "buyerId": 1,
-      "sellerId": 3,
-      "status": "Completed"
+      "serviceId": "3",
+      "buyerId": "1",
+      "sellerId": "3",
+      "status": "completed",
+      "location": "Westlands",
+      "createdAt": "2025-09-08T08:30:00Z",
+      "updatedAt": "2025-09-08T11:00:00Z"
     },
     {
-      "id": "be02",
-      "buyerId": "1",
+      "id": "3",
       "serviceId": "1",
-      "status": "pending",
-      "createdAt": "2025-09-08T13:00:42.102Z"
+      "buyerId": "1",
+      "sellerId": null,
+      "status": "accepted",
+      "location": "Nairobi West",
+      "createdAt": "2025-09-09T13:00:42.102Z",
+      "updatedAt": "2025-09-09T12:23:16.097Z"
     },
     {
-      "id": "a0f2",
+      "id": "4",
+      "serviceId": "1",
+      "buyerId": "1",
+      "sellerId": null,
+      "status": "accepted",
+      "location": "Nairobi West",
+      "createdAt": "2025-09-09T13:15:37.665Z",
+      "updatedAt": "2025-09-09T12:23:17.003Z"
+    },
+    {
+      "id": "33c9",
       "buyerId": "1",
       "serviceId": "1",
-      "status": "pending",
-      "createdAt": "2025-09-08T13:15:37.665Z"
+      "status": "finished",
+      "createdAt": "2025-09-09T12:23:25.960Z"
+    },
+    {
+      "id": "9793",
+      "buyerId": "2",
+      "serviceId": "2",
+      "status": "finished",
+      "createdAt": "2025-09-09T12:26:44.664Z"
+    },
+    {
+      "id": "dbae",
+      "buyerId": "1",
+      "serviceId": "1",
+      "status": "finished",
+      "createdAt": "2025-09-09T12:27:16.879Z"
+    },
+    {
+      "id": "10fb",
+      "buyerId": "1",
+      "serviceId": "1",
+      "status": "finished",
+      "createdAt": "2025-09-09T12:27:52.498Z"
     }
   ],
   "reviews": [
     {
       "id": "1",
-      "serviceId": 1,
-      "buyerId": 1,
+      "serviceId": "1",
+      "buyerId": "1",
       "rating": 5,
       "comment": "Great plumbing work, fixed everything quickly!"
     },
     {
       "id": "2",
-      "serviceId": 3,
-      "buyerId": 1,
+      "serviceId": "3",
+      "buyerId": "1",
       "rating": 4,
       "comment": "Good design, but delivery took longer than expected."
     }
   ],
   "wallets": [
     {
-      "userId": 1,
-      "balance": 5000,
-      "id": "59b0"
+      "id": "59b0",
+      "userId": "1",
+      "balance": 5000
     },
     {
-      "userId": 2,
-      "balance": 0,
-      "id": "7abe"
+      "id": "7abe",
+      "userId": "2",
+      "balance": 0
     },
     {
-      "userId": 3,
-      "balance": 0,
-      "id": "684e"
+      "id": "684e",
+      "userId": "3",
+      "balance": 0
     }
   ]
 }

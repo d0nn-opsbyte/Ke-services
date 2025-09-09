@@ -7,6 +7,7 @@ import Services from "./components/Services";
 import Wallet from "./components/Wallet";
 import Profile from "./components/Profile";
 import Orders from "./components/Orders";
+import SellerRequests from "./components/Requests";
 import "./App.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/wallet/:id" element={<Wallet />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/orders/:id" element={<Orders />} />
+        <Route path="/requests/:id" element={<SellerRequests />} />
       </Routes>
     </Router>
   );
