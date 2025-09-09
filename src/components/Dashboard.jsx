@@ -19,7 +19,10 @@ function Dashboard() {
     <div className="layout">
       <Sidebar userId={user.id} role={user.role} />
       <div className="content">
-        <h1>Welcome, {user.name} 👋</h1>
+
+        <h1>Ke-services</h1>
+
+        <h3>Welcome, {user.name} 👋</h3>
         <p>
           {user.role === "buyer"
             ? "Go to 'My Orders' to see your service requests."

@@ -3,6 +3,7 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(120deg, #1a237e, #00b894);
   color: #2f3640; /* dark grey text */
+  overflow: hidden;
 }
 
 .home-container {
@@ -83,40 +84,186 @@ body {
 .layout {
   display: flex;
 }
+/* === Sidebar Styling === */
+/* General styling for the body to prevent horizontal scroll when the sidebar is open */
+body {
+  overflow-x: hidden;
+}
 
-/* === Sidebar === */
-.sidebar {
-  width: 200px;
-  background: #2e86de; /* blue sidebar */
-  color: white;
-  height: 100vh;
-  padding: 20px;
+/* Styles for the hamburger menu button */
+.menu-btn {
   position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1001; /* Must be on top of the overlay and sidebar */
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 5px;
 }
 
-.sidebar h2 {
-  margin-top: 0;
-  font-size: 20px;
-  text-align: center;
+/* Styles for the overlay (darkens the background when the sidebar is open) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: block; /* The JS logic handles showing/hiding this */
 }
 
-.sidebar nav {
-  margin-top: 20px;
+/* General styling for the body to prevent horizontal scroll when the sidebar is open */
+body {
+  overflow-x: hidden;
+}
+
+/* Styles for the hamburger menu button */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1001; 
+  background: #34495e; /* Darker gray for the button */
+  color: #ecf0f1;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+/* Styles for the overlay (darkens the background when the sidebar is open) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: block; 
+}
+
+/* Base styles for the sidebar */
+.Sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; 
+  width: 250px; 
+  height: 100%;
+  background-color: #2c3e50; /* A deep charcoal gray */
+  color: #ecf0f1; /* Light gray text */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: left 0.3s ease-in-out; 
+  z-index: 1001; 
   display: flex;
   flex-direction: column;
 }
 
-.sidebar nav a {
-  color: white;
+/* Class to show the sidebar by sliding it into view */
+.Sidebar.open {
+  left: 0;
+}
+
+/* Styling for the title "KE Services" */
+.Sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #3498db; /* A vibrant blue for the heading */
+}
+
+/* Styling for the navigation links */
+.Sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styling for individual links */
+.Sidebar a {
+  color: #ecf0f1; /* Light gray text */
   text-decoration: none;
-  margin: 10px 0;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background 0.3s;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 16px;
+}
+
+/* Hover and active effect for links */
+.Sidebar a:hover,
+.Sidebar a:focus {
+  background-color: #34495e; /* A slightly darker gray on hover */
+  color: #2ecc71; /* A pop of bright green for the text on hover */
+}
+
+/* Hamburger Button */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #2e86de;
+  color: white;
+  border: none;
+  font-size: 22px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1100; /* above sidebar */
+}
+
+.menu-btn:hover {
+  background: #1e5fa5;
+}
+
+/* Dark Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 900;
 }
 
 .sidebar nav a:hover {
-  background: #27ae60; /* green hover */
+  background: #27ae60;
+}
+
+/* Hamburger Button */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #2e86de;
+  color: white;
+  border: none;
+  font-size: 22px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 300;
+}
+
+.menu-btn:hover {
+  background: #1e5fa5;
+}
+
+/* Dark Overlay when sidebar is open */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 150;
 }
 
 .content {
@@ -641,3 +788,20 @@ button.secondary:hover {
   color: #555;
   margin: 4px 0;
 }
+
+.about-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
+  line-height: 1.7;
+}
+
+.about-container h1 {
+  margin-bottom: 20px;
+  color: #1a237e;
+}
+
+.about-container p {
+  margin-bottom: 18px; /* nice breathing space */
+}
+

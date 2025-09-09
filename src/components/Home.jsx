@@ -4,17 +4,6 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="home">
-      {/* Navbar */}
-      <nav className="navbar">
-        <h2 className="logo">KE Services</h2>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup" className="signup-btn">Sign Up</Link>
-        </div>
-      </nav>
-
       {/* Hero Section */}
       <section className="hero">
         <h1>Find Services or Offer Your Skills</h1>
@@ -24,7 +13,7 @@ function Home() {
         </p>
         <div className="hero-buttons">
           <Link to="/signup" className="cta primary">Get Started</Link>
-          <Link to="/services" className="cta secondary">Explore Services</Link>
+          <Link to="/login" className="cta secondary">Explore Services</Link>
         </div>
       </section>
 
@@ -52,21 +41,17 @@ function Home() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2025 KE Services. All rights reserved.</p>
         <div className="footer-links">
-          <p>About Us (KE Services)
-
-At KE Services, we believe finding and offering services in Kenya should be simple, trusted, and empowering.
-Our platform connects buyers who need reliable services with sellers who have the skills to deliver — all in one digital marketplace.
-
-✅ For Buyers: Discover a wide range of services — from home repairs and cleaning, to tech support and professional consulting. Book easily, pay securely, and review your experience.
-
-✅ For Sellers: Showcase your skills, grow your client base, and manage orders with ease. Our wallet system ensures transparent earnings, while reviews help you build trust and reputation.
-
-🌍 Our mission is to empower everyday Kenyans by creating opportunities, building trust between communities, and making service exchange as smooth as ordering a ride.
-
-Whether you’re looking to hire or to earn, KE Services is your go-to marketplace.</p>
+          <div className="about-container">
+            <h3>About Us</h3>
+            <p>At <strong>KE Services</strong>, we believe finding and offering services in Kenya should be simple, trusted, and empowering.</p>
+            <p>Our platform connects buyers who need reliable services with sellers who have the skills to deliver — all in one digital marketplace.</p>
+            <p>✅ For Buyers: Discover a wide range of services — from home repairs and cleaning, to tech support and professional consulting. Book easily, pay securely, and review your experience.</p>
+            <p>✅ For Sellers: Showcase your skills, grow your client base, and manage orders with ease. Our wallet system ensures transparent earnings, while reviews help you build trust and reputation.</p>
+          </div>
         </div>
+  <p>© 2025 KE Services. All rights reserved.</p>
+
       </footer>
     </div>
   );
