@@ -8,6 +8,7 @@ import Wallet from "./components/Wallet";
 import Profile from "./components/Profile";
 import Orders from "./components/Orders";
 import SellerRequests from "./components/Requests";
+import BackButton from "./components/BackButton";
 import "./App.css";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/orders/:id" element={<Orders />} />
         <Route path="/requests/:id" element={<SellerRequests />} />
+        <Route path="/back/:id" element={<BackButton />} />
       </Routes>
     </Router>
   );

@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f6fa;
-  color: #2f3640;
+  background: linear-gradient(120deg, #1a237e, #00b894);
+  color: #2f3640; /* dark grey text */
 }
 
 .home-container {
@@ -10,63 +10,84 @@ body {
   padding: 50px;
 }
 
-.auth-buttons {
-  margin-top: 20px;
-}
-
-.auth-buttons button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  border: none;
-  background: #273c75;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.auth-buttons .signup-btn {
-  background: #44bd32;
-}
-
+/* === Login Page Styling === */
 .auth-container {
-  width: 300px;
-  margin: 50px auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+  width: 350px;
+  margin: 80px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #1a237e;
 }
 
 .auth-container form {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
-.auth-container input,
-.auth-container select {
-  margin: 8px 0;
-  padding: 10px;
-  border: 1px solid #dcdde1;
-  border-radius: 5px;
+.auth-container input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.auth-container input:focus {
+  outline: none;
+  border-color: #00b894;
+  box-shadow: 0 0 4px rgba(0,184,148,0.3);
 }
 
 .auth-container button {
-  margin-top: 10px;
-  padding: 10px;
-  background: #0097e6;
+  padding: 12px;
+  background: linear-gradient(90deg, #1a237e, #00b894);
   border: none;
   color: white;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.auth-container button:hover {
+  background: linear-gradient(90deg, #303f9f, #019170);
+}
+
+/* === Add a subtle link below form === */
+.auth-container p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.auth-container p a {
+  color: #00b894;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-container p a:hover {
+  text-decoration: underline;
 }
 
 .layout {
   display: flex;
 }
 
+/* === Sidebar === */
 .sidebar {
   width: 200px;
-  background: #273c75;
+  background: #2e86de; /* blue sidebar */
   color: white;
   height: 100vh;
   padding: 20px;
@@ -95,7 +116,7 @@ body {
 }
 
 .sidebar nav a:hover {
-  background: #40739e;
+  background: #27ae60; /* green hover */
 }
 
 .content {
@@ -113,7 +134,7 @@ body {
   font-size: 26px;
   margin-bottom: 25px;
   font-weight: 600;
-  color: #1a237e;
+  color: #2e86de; /* blue title */
 }
 
 ul {
@@ -158,7 +179,7 @@ li p {
 
 /* === Order Button === */
 .order-btn {
-  background: #1a237e;
+  background: #27ae60; /* green button */
   color: white;
   border: none;
   padding: 10px 16px;
@@ -170,7 +191,7 @@ li p {
 }
 
 .order-btn:hover {
-  background: #303f9f;
+  background: #1e8449;
 }
 
 /* === Reviews Section === */
@@ -183,7 +204,7 @@ li p {
 .reviews h4 {
   font-size: 16px;
   margin-bottom: 10px;
-  color: #1a237e;
+  color: #2e86de; /* blue heading */
 }
 
 .review-card {
@@ -216,7 +237,7 @@ li p {
 }
 
 .reviews button {
-  background: #4caf50;
+  background: #27ae60; /* green */
   color: white;
   border: none;
   padding: 8px 14px;
@@ -226,7 +247,7 @@ li p {
 }
 
 .reviews button:hover {
-  background: #388e3c;
+  background: #1e8449;
 }
 
 /* === Responsive Styling === */
@@ -249,6 +270,7 @@ li p {
   }
 }
 
+/* === Profile === */
 .profile-card {
   display: flex;
   align-items: center;
@@ -285,7 +307,7 @@ li p {
 }
 
 .profile-form button {
-  background: #1a237e;
+  background: #2e86de; /* blue */
   color: white;
   border: none;
   padding: 10px;
@@ -294,10 +316,10 @@ li p {
 }
 
 .profile-form button:hover {
-  background: #303f9f;
+  background: #1e5fa5;
 }
 
-/* General container */
+/* === Orders & Requests === */
 .orders-container {
   padding: 20px;
   max-width: 800px;
@@ -305,14 +327,12 @@ li p {
   font-family: Arial, sans-serif;
 }
 
-/* Title */
 .orders-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #222;
+  color: #2e86de; /* blue heading */
 }
 
-/* Individual order/job/request card */
 .order-card {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -326,35 +346,24 @@ li p {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Order text details */
 .order-card p {
   margin: 5px 0;
   color: #444;
 }
 
-/* Status styling */
 .order-status {
   font-weight: bold;
   text-transform: capitalize;
 }
 
-.order-status.requested {
-  color: #ff9800;
+.order-status.pending {
+  color: #f39c12; /* orange */
 }
 
-.order-status.accepted {
-  color: #2196f3;
+.order-status.finished {
+  color: #27ae60; /* green */
 }
 
-.order-status.in_progress {
-  color: #673ab7;
-}
-
-.order-status.completed {
-  color: #4caf50;
-}
-
-/* Buttons */
 button {
   padding: 8px 14px;
   border: none;
@@ -367,22 +376,268 @@ button {
   transition: background 0.2s ease-in-out;
 }
 
-/* Primary action (Accept, Start, Complete) */
 button {
-  background: #2196f3;
+  background: #2e86de; /* blue */
   color: white;
 }
 
 button:hover {
-  background: #1976d2;
+  background: #1e5fa5;
 }
 
-/* Secondary (like Cancel if you add later) */
 button.secondary {
-  background: #f44336;
-  color: white;
+  background: #e74c3c; /* red */
 }
 
 button.secondary:hover {
-  background: #d32f2f;
+  background: #c0392b;
+}
+
+/* Back to dashboard */
+.back-btn {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 8px 16px;
+  border: none;
+  background: #636e72; /* grey */
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: #2d3436; /* darker grey */
+}
+
+/* === General Page Setup === */
+.home {
+  font-family: "Arial", sans-serif;
+  background: #f5f7fa;
+  color: #2f3640;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* === Navbar === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #1a237e, #00b894);
+  padding: 15px 40px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+.signup-btn {
+  background: #44bd32;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* === Hero Section === */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(to right, #00b894, #1a237e);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.cta {
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.cta.primary {
+  background: #44bd32;
+  color: white;
+}
+
+.cta.primary:hover {
+  background: #388e3c;
+}
+
+.cta.secondary {
+  background: white;
+  color: #1a237e;
+}
+
+.cta.secondary:hover {
+  background: #f1f1f1;
+}
+
+/* === How It Works === */
+.how-it-works {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 30px;
+  margin-bottom: 40px;
+  color: #1a237e;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.step {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 250px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.step span {
+  font-size: 40px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.step h3 {
+  margin: 10px 0;
+  font-size: 20px;
+  color: #00b894;
+}
+
+.step p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* === Footer === */
+.footer {
+  background: #2f3640;
+  color: #ddd;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #ddd;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #44bd32;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: none; /* optional: hide on mobile */
+  }
+}
+
+/* === Services Grid === */
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* === Service Card === */
+.services-list li {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.services-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+}
+
+.services-list li img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.services-list li h3 {
+  font-size: 18px;
+  margin: 8px 0;
+  color: #2e86de;
+}
+
+.services-list li p {
+  font-size: 14px;
+  color: #555;
+  margin: 4px 0;
 }
