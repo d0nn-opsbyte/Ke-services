@@ -7,17 +7,18 @@ function Services() {
   const [services, setServices] = useState([]);
   const [user, setUser] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:3001/users/${id}`)
       .then((res) => res.json())
       .then((data) => setUser(data));
 
-    fetch("http://localhost:3001/services")
+    fetch(`http://localhost:3001/services`)
       .then((res) => res.json())
       .then((data) => setServices(data));
 
-    fetch("http://localhost:3001/reviews")
+    fetch(`http://localhost:3001/reviews`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [id]);
@@ -69,14 +70,31 @@ function Services() {
     return total / serviceReviews.length;
   };
 
+  // Filter services based on search
+  const filteredServices = services.filter(
+    (s) =>
+      s.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      s.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       {user && <BackButton />}
       <div className="content">
         <h1>Available Services</h1>
-        {services.length > 0 ? (
+
+        {/* Search Bar */}
+        <input
+          type="text"
+          placeholder="Search services..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-bar"
+        />
+
+        {filteredServices.length > 0 ? (
           <ul className="services-list">
-            {services.map((s) => (
+            {filteredServices.map((s) => (
               <li key={s.id}>
                 <img
                   src={s.image || "https://via.placeholder.com/250"}
@@ -84,7 +102,9 @@ function Services() {
                 />
                 <h3>{s.title}</h3>
                 <p>{s.description}</p>
-                <p><strong>KES {s.price}</strong></p>
+                <p>
+                  <strong>KES {s.price}</strong>
+                </p>
 
                 {/* Ratings */}
                 <div className="rating">
@@ -143,7 +163,7 @@ function Services() {
             ))}
           </ul>
         ) : (
-          <p>No services available.</p>
+          <p>No services found.</p>
         )}
       </div>
     </div>

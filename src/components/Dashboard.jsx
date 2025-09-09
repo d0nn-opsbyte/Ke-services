@@ -15,7 +15,8 @@ function Dashboard() {
 
   if (!user) return <p>Loading dashboard...</p>;
 
-  return (
+  return (<>
+
     <div className="layout">
       <Sidebar userId={user.id} role={user.role} />
       <div className="content">
@@ -30,6 +31,7 @@ function Dashboard() {
         </p>
       </div>
     </div>
+    </>
   );
 }
 

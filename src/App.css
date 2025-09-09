@@ -3,7 +3,8 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(120deg, #1a237e, #00b894);
   color: #2f3640; /* dark grey text */
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .home-container {
@@ -803,5 +804,22 @@ button.secondary:hover {
 
 .about-container p {
   margin-bottom: 18px; /* nice breathing space */
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 14px;
+  margin: 15px 0 25px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-bar:focus {
+  border-color: #007bff;   /* blue highlight */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
 }
 
